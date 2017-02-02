@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Chalkboard Trivia Game</title>
+	<link href='https://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="js/jquery-2.2.3.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="chalkboard">
+			<img src="images/hole-fill.png" class="hole-fill">
+			<img src="images/erase1.png" class="erase" id="erase1">
+			<img src="images/erase2.png" class="erase" id="erase2">
+			<img src="images/erase3.png" class="erase" id="erase3">
+			<img src="images/erase4.png" class="erase" id="erase4">
+			<img src="images/scoreboard.png" class="scoreboard">
+			<img src="images/turn-count.png" class="turn-count">
+			<img src="images/chalkboard-main.png" class="chalkboard-main">
+		</div>
+		<main>
+			<section class="title">
+				<h1>&nbsp;</h1>
+			</section>
+			<section class="interactive">
+				<h2 id="question">Press "New Game" to test your Trivia Knowledge!</h2>
+			</section>
+			<section class="answers">
+			</section>
+			<section class="game-info">
+				<div class="new-game">New Game</div>
+				<div class="score">Score</div>
+				<div class="quest-num">Question Number</div>
+			</section>
+		</main>
+	</div>
+	<div class="wall"></div>
+	<div class="templates">
+		<section class="answers">
+				<span class="answer" id="ans1"></span>
+				<span class="answer" id="ans2"></span>
+				<span class="answer" id="ans3"></span>
+				<span class="answer" id="ans4"></span>
+		</section>
+	</div>
+</body>
+</html>

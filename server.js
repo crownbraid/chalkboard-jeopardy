@@ -5,7 +5,7 @@ app.use(express.static('./'));
 
 var questions = require('./questions')
   , questions.storeSize = 100;
-  
+
 questions.reloadStore();
 
 app.get('/questions/:numquest', function(req, res) {

@@ -1,0 +1,173 @@
+*,
+*:after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+	font-family: 'Fredericka the Great', cursive;
+	color: white;
+	word-wrap: break-word;
+	background-image: url('../images/stucco.png');
+	background-color: Linen;
+}
+
+.hole-fill {
+	-webkit-filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.5));
+    filter: url(#drop-shadow);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
+    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
+} 
+
+.container {
+	width: 62.8em;
+	height: 43em;
+	margin: 2.6em auto 0;
+}
+
+/* chalkboard/scoreboard formatting */
+.chalkboard > img {
+	position: absolute;
+	float: left;
+	height: 43em;
+}
+
+.scoreboard, .turn-count {
+/* range == 24-40.5 em */
+	margin-left: 24em;
+}
+
+.chalkboard, main {
+	position: absolute;
+	float: left;
+}
+
+/* content formatting */
+main {
+	height: inherit;
+	width: inherit;
+	padding: 0 4.5em;
+	font-size: 1em;
+	opacity: 0.9;
+}
+
+main * {
+	text-align: center;
+	font-size: 2em;
+	line-height: 1.3em;
+}
+
+.title {
+	margin-top: 3.3em;
+	margin-bottom: 1.2em;
+}
+
+.interactive h2 {
+	height: 3em;
+	padding: 0 1.7em;
+	font-size: 1.2em;
+}
+
+.answers {
+	font-size: .8em;
+	margin-top: 3.5em;
+    text-align: justify;
+    margin-bottom: 15.9em;
+}
+
+.answer {
+	width: 21.35%;
+	float: left;
+	margin-left: 1em;
+}
+
+.game-info {
+	font-size: .5em;
+	padding-right: 3.5em;
+}
+
+.new-game {
+	float: left;
+	font-size: 3em;
+	padding-left: 2em;
+}
+
+.wall {
+	width: 100%;
+	background-image: url('../images/wallpanel.jpg');
+	background-size: 12em auto;
+	height: 22em;
+	z-index: -1;
+	margin-top: -20em;
+	margin-bottom: -20em;
+	border-bottom: solid .2em black;
+	border-top: solid .1em black;
+}
+
+.erase {
+	width: 62.5em;
+	padding-top: 35em;
+	padding-bottom: 10em;
+}
+
+/* templates formatting */
+.templates {
+	display: hidden;
+}
+
+.flashgreen {
+  -moz-animation: flashgreen .05s ease-out;
+  -moz-animation-iteration-count: 35;
+
+  -webkit-animation: flashgreen .05s ease-out;
+  -webkit-animation-iteration-count: 35;
+
+  -ms-animation: flash .05s ease-out;
+  -ms-animation-iteration-count: 35;
+}
+
+@-webkit-keyframes flashgreen {
+    0% { color: none; }
+    100% { color: #69FBFA; }
+}
+
+@-moz-keyframes flashgreen {
+    0% { color: none; }
+    100% { color: #69FBFA; }
+}
+
+@-ms-keyframes flashgreen {
+    0% { color: none; }
+    100% { color: #69FBFA; }
+}
+
+.flashred {
+  -moz-animation: flashred 1s ease-out;
+  -moz-animation-iteration-count: 20;
+
+  -webkit-animation: flashred 1s ease-out;
+  -webkit-animation-iteration-count: 20;
+
+  -ms-animation: flashred 1s ease-out;
+  -ms-animation-iteration-count: 20;
+}
+
+@-webkit-keyframes flashred {
+    0% { color: #F95F7D; }
+    35% { color: #FA8FA4; }
+    100% { color: none; }
+}
+
+@-moz-keyframes flashred {
+    0% { color: #F95F7D; }
+    35% { color: #FA8FA4; }
+    100% { color: none; }
+}
+
+@-ms-keyframes flashred {
+    0% { color: #F95F7D; }
+    35% { color: #FA8FA4; }
+    100% { color: none; }
+}
