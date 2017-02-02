@@ -4,7 +4,6 @@ var express = require('express')
 app.use(express.static(__dirname + '/public'));
 
 var questions = require('./questions');
-
 questions.storeSize = 100;
 
 questions.reloadStore();
