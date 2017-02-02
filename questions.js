@@ -40,8 +40,8 @@ module.exports = {
 	store: [],
 	storeSize: 0,
 	reloadStore: function () {
-		while (store.length < storeSize) {
-			store.push(createNewQuestionObject());
+		while (this.store.length < this.storeSize) {
+			this.store.push(createNewQuestionObject());
 		}
 	}
 }	
