@@ -16,7 +16,7 @@ class Question {
 	}
 
 	getSimilarAnswers() {
-		const url = 'https://wordsapiv1.p.mashape.com/words/'
+		const url = 'https://wordsapiv1.p.mashape.com/words/';
 		const options = {'X-Mashape-Key': 'Q3mEcts35FmshxFGDp94g0ach9F0p1IfiAWjsnD2iNV7FBSpcG'};
 
 		unirest.get(url + this.answer, options, (req, res) => {
@@ -43,4 +43,4 @@ module.exports = {
 			this.store.push(newQuestion);
 		}
 	}
-}
+};
