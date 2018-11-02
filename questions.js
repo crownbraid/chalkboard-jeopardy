@@ -2,7 +2,13 @@ const unirest = require('unirest');
 
 class Question {
 	constructor() {
-		unirest.get('http://jservice.io/api/random', function(req, res) {
+		this.question = null;
+		this.answer = null;
+		this.fakeAnswers = [];
+	}
+
+	prepareQuestion() {
+		unirest.get('http://jservice.io/api/random', (req, res) => {
 			this.question = req.body[0].question;
 			this.answer = req.body[0].answer;
 			this.getSimilarAnswers();
@@ -32,7 +38,9 @@ module.exports = {
 	storeSize: 0,
 	reloadStore() {
 		while (this.store.length < this.storeSize) {
-			this.store.push(new Question);
+			const newQuestion = new Question;
+			newQuestion.prepareQuestion();
+			this.store.push(newQuestion);
 		}
 	}
 }
