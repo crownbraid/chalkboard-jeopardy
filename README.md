@@ -3,5 +3,5 @@ A chalkboard quiz game SPA. Each round presents a random question from a past Je
 
 note: *Due to service costs, the gh-pages demo has been disconnected from the API and serves preset questions.*
 
-### Major Technologies
+### Major Tools
 Node.js, Express, Unirest, jQuery, jService Jeopardy API, Mashape WordsAPI
