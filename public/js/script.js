@@ -100,18 +100,16 @@ function transition(callback) {
 		haltClick = 'off';
 	});
 	for (var i = 1; i <= 4; i++) {
-		if ($('#ans' + i).text() != gameQuests[0].answer) {
-			$('#ans' + i).delay((700 * i)).animate({'opacity': '0', 'letter-spacing': '.1em'}, 500);
-		} else {$('#ans' + i).addClass("flashgreen");}
+		const ans = $('#ans' + i);
+		if (ans.text() != gameQuests[0].answer) {
+			ans.delay((700 * i)).animate({'opacity': '0', 'letter-spacing': '.1em'}, 500);
+		} else {ans.addClass("flashgreen");}
 	}
 }
 
 // ANIMATE SCOREBOARD
 function scoreAni(obj, left) {
-	$(obj).animate(
-	 	{'margin-left': left},
-	 	390
-	);
+	$(obj).animate({'margin-left': left}, 390);
 }
 
 // END GAME
