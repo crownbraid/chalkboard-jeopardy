@@ -23,8 +23,8 @@ class Question {
 
 		unirest.get(url + this.answer + '/instanceOf', options) 
 		.end( res => {
-			res.body.instanceOf.forEach( result => {
-				unirest.get(url + result + '/inCategory', options)
+			res.body.instanceOf.forEach( category => {
+				unirest.get(url + category + '/inCategory', options)
 				.end( res => {
 					res.body.inCategory.forEach( relatedWord => {
 						this.fakeAnswers.push(relatedWord);
