@@ -27,7 +27,7 @@ class Question {
 				unirest.get(url + category + '/hasMembers', options)
 				.end( res => {
 					res.body.hasMembers.forEach( relatedWord => {
-						this.fakeAnswers.push(relatedWord);
+						if (relatedWord != this.answer) this.fakeAnswers.push(relatedWord);
 					});
 				});
 			});
