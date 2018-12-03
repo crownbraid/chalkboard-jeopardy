@@ -21,15 +21,13 @@ class Question {
 		const url = 'https://wordsapiv1.p.mashape.com/words/';
 		const options = {'X-Mashape-Key': 'Q3mEcts35FmshxFGDp94g0ach9F0p1IfiAWjsnD2iNV7FBSpcG'};
 
-		unirest.get(url + this.answer, options) 
+		unirest.get(url + this.answer + '/instanceOf', options) 
 		.end( res => {
-			res.results.forEach( result => {
-				unirest.get(url + result.typeOf, options)
+			res.body.instanceOf.forEach( result => {
+				unirest.get(url + result + '/inCategory', options)
 				.end( res => {
-					res.results.forEach( result => {
-						result.hasInstances.forEach( instance => {
-							this.fakeAnswers.push(instance);
-						});
+					res.body.inCategory.forEach( relatedWord => {
+						this.fakeAnswers.push(relatedWord);
 					});
 				});
 			});
