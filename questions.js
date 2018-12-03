@@ -5,6 +5,7 @@ class Question {
 		this.question = null;
 		this.answer = null;
 		this.fakeAnswers = [];
+		this.prepareQuestion();
 	}
 
 	prepareQuestion() {
@@ -39,7 +40,6 @@ module.exports = {
 	reloadStore() {
 		while (this.store.length < this.storeSize) {
 			const newQuestion = new Question;
-			newQuestion.prepareQuestion();
 			this.store.push(newQuestion);
 		}
 	}
