@@ -24,9 +24,9 @@ class Question {
 		unirest.get(url + this.answer + '/instanceOf', options) 
 		.end( res => {
 			res.body.instanceOf.forEach( category => {
-				unirest.get(url + category + '/inCategory', options)
+				unirest.get(url + category + '/hasMembers', options)
 				.end( res => {
-					res.body.inCategory.forEach( relatedWord => {
+					res.body.hasMembers.forEach( relatedWord => {
 						this.fakeAnswers.push(relatedWord);
 					});
 				});
