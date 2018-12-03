@@ -39,8 +39,7 @@ module.exports = {
 	storeSize: 0,
 	reloadStore() {
 		while (this.store.length < this.storeSize) {
-			const newQuestion = new Question;
-			this.store.push(newQuestion);
+			this.store.push(new Question);
 		}
 	}
 };
