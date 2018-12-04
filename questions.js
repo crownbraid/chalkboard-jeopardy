@@ -26,9 +26,8 @@ class Question {
 			res.body.instanceOf.forEach( category => {
 				unirest.get(url + category + '/hasMembers', options)
 				.end( res => {
-					const ansAlphaNum = this.answer.replace(/[^a-z0-9]/gi,'');
 					res.body.hasMembers.forEach( relatedWord => {
-						if (relatedWord.replace(/[^a-z0-9]/gi,'') != ansAlphaNum) this.fakeAnswers.push(relatedWord);
+						if (relatedWord.replace(/[^a-z0-9]/gi,'') != this.answer.replace(/[^a-z0-9]/gi,'')) this.fakeAnswers.push(relatedWord);
 					});
 				});
 			});
