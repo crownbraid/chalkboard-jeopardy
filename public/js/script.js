@@ -1,83 +1,84 @@
 $(function() {
 
-	$('.new-game').click(function() {
+	$('.new-game').click( () => {
 		$(this).removeClass("flashgreen");
 		newGame();
 		$(this).addClass("flashgreen");
 	});
 
-	$('main').on('click', '.answer', function(e) {
-		if (haltClick == 'off') {
-			haltAni = 'off';
-			haltClick= 'on';
-			e.preventDefault();
-			// checks answer
-			var correctAnswer = $(this).text() == gameQuests[0].answer;
-			if (correctAnswer) {
+	$('main').on('click', '.answer', e => {
+		e.preventDefault();
+		
+		if (!haltClick) {
+			haltAni = false;
+			haltClick = true;
+			
+			// check answer
+			const isCorrect = $(this).text() == gameQuests[0].answer;
+			if (isCorrect) {
 				numCorr++;
 				scoreAni('.scoreboard', scInc);
 				$(this).addClass("flashgreen");
 			} else {
 				$(this).addClass("flashred");
 			}
-			// advances to next question or end game
+			
+			// advance to next question or end game
 			if (gameQuests.length > 1) {
-				transition(function() {
-					if (haltAni == 'off') {
+				transition( () => {
+					if (haltAni == false) {
 						scoreAni('.turn-count', scInc);
 						gameQuests.shift();	
 						newQuestion();
 					}
 				});
 			} else {
-				transition(function() {
-					endGame();
-				});
+				transition(endGame);
 			}
 		}
 	});
 });
 
-var gameQuests; 
-var numQuests = 5;
-var scInc = '+=' + (16.18/numQuests) + 'em';
-var haltClick = 'off';
-var haltAni = 'off';
-var numCorr = 0;
+let gameQuests; 
+const numQuests = 5;
+const scInc = '+=' + (16.18/numQuests) + 'em';
+let haltClick = false;
+let haltAni = false;
+let numCorr = 0;
 
 // NEW GAME
-function newGame() {
-	haltAni = 'on';
+const newGame = () => {
+	haltAni = true;
 	resetGame();
 	questsGet();
 }
-function resetGame() {
+const resetGame = () => {
 	$('.erase').finish().css('padding-top', '35em').show();
 	$('*').clearQueue();
-	haltClick = 'off';
+	haltClick = false;
 	numCorr = 0;
 	scoreAni('.turn-count', '24em');
 	scoreAni('.scoreboard', '24em');
 	scoreAni('.turn-count', scInc);
 }
-function questsGet() {
-	$.get( "/questions/" + numQuests, function(data) {
+const questsGet = () => {
+	$.get( "/questions/" + numQuests, data => {
 		gameQuests = data;
 		newQuestion();
 	});
 }
 
 // DISPLAY QUESTION
-function newQuestion() {
+const newQuestion = () => {
 	$('#question').text(gameQuests[0].question);
 	$('main .answers').remove();
 	$('.interactive').after(makeAnswerTemplate());
 }
-function makeAnswerTemplate() {
-	var template = $('.templates .answers').clone();
-	var answers = gameQuests[0].answers.slice();
-	for (var i = 1; i <= 4; i++) {
-		var randomAns = Math.floor(Math.random()*answers.length);
+const makeAnswerTemplate = () => {
+	let template = $('.templates .answers').clone();
+	const answers = gameQuests[0].answers.slice();
+	for (let i = 1; i <= 4; i++) {
+		let randomAns = Math.floor(Math.random()*answers.length);
 		randomAns = answers.splice(randomAns, 1);
 		template.find('#ans' + i).text(randomAns);
 		if (randomAns == gameQuests[0].answer) {
@@ -88,18 +89,17 @@ function makeAnswerTemplate() {
 }
 
 // TRANSITION BETWEEN QUESTIONS
-function transition(callback) {
-	$('#erase1').animate({'padding-top': '0em'}, 1900, function() {
-	});
+const transition = callback => {
+	$('#erase1').animate({'padding-top': '0em'}, 1900);
 	$('#erase2').delay(600).animate({'padding-top': '0em'}, 1900);
 	$('#erase3').delay(1200).animate({'padding-top': '0em'}, 1900);
-	$('#erase4').delay(1800).animate({'padding-top': '0em'}, 1900, function() {
+	$('#erase4').delay(1800).animate({'padding-top': '0em'}, 1900, () => {
 		$('.erase').animate({'padding-top': '35em'}, 300);
 		$('.erase').show();
 		callback();
-		haltClick = 'off';
+		haltClick = false;
 	});
-	for (var i = 1; i <= 4; i++) {
+	for (let i = 1; i <= 4; i++) {
 		const ans = $('#ans' + i);
 		if (ans.text() != gameQuests[0].answer) {
 			ans.delay((700 * i)).animate({'opacity': '0', 'letter-spacing': '.1em'}, 500);
@@ -108,12 +108,12 @@ function transition(callback) {
 }
 
 // ANIMATE SCOREBOARD
-function scoreAni(obj, left) {
+const scoreAni = (obj, left) => {
 	$(obj).animate({'margin-left': left}, 390);
 }
 
 // END GAME
-function endGame() {
+const endGame = () => {
 	$('main .answers').html($('.templates .answers').clone());
 	$('#question').text("You scored " + numCorr + " out of " + numQuests + "!");
 }
