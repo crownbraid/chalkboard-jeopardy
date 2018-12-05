@@ -1,9 +1,11 @@
 $(function() {
 
-	$('.new-game').click( () => {
-		$(this).removeClass("flashgreen");
+	$('.new-game').on('click', e => {
+		e.preventDefault();
+		
+		$(e.currentTarget).removeClass("flashgreen");
 		newGame();
-		$(this).addClass("flashgreen");
+		$(e.currentTarget).addClass("flashgreen");
 	});
 
 	$('main').on('click', '.answer', e => {
@@ -14,13 +16,13 @@ $(function() {
 			haltClick = true;
 			
 			// check answer
-			const isCorrect = $(this).text() == gameQuests[0].answer;
+			const isCorrect = $(e.currentTarget).text() == gameQuests[0].answer;
 			if (isCorrect) {
 				numCorr++;
 				scoreAni('.scoreboard', scInc);
-				$(this).addClass("flashgreen");
+				$(e.currentTarget).addClass("flashgreen");
 			} else {
-				$(this).addClass("flashred");
+				$(e.currentTarget).addClass("flashred");
 			}
 			
 			// advance to next question or end game
