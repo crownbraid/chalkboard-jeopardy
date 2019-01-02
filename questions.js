@@ -27,7 +27,8 @@ class Question {
 				unirest.get(url + category + '/hasMembers', options)
 				.end( res => {
 					res.body.hasMembers.forEach( relatedWord => {
-						if (relatedWord.replace(/[^A-Za-z0-9]/gi,'') != this.answer.replace(/[^A-Za-z0-9]/gi,'')) this.fakeAnswers.push(relatedWord);
+						const isNotCorrectAnswer = relatedWord.replace(/[^A-Za-z0-9]/gi,'') != this.answer.replace(/[^A-Za-z0-9]/gi,'');
+						if (isNotCorrectAnswer) this.fakeAnswers.push(relatedWord);
 					});
 				});
 			});
