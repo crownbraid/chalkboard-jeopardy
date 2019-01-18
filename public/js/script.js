@@ -64,7 +64,7 @@ const resetGame = () => {
 	scoreAni('.turn-count', scInc);
 }
 const questsGet = () => {
-	$.get( "/questions/" + numQuests, data => {
+	$.get("/" + numQuests + "/questions", data => {
 		gameQuests = data;
 		newQuestion();
 	});
