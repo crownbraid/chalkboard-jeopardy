@@ -7,7 +7,7 @@ const questions = require('./questions');
 questions.storeSize = 100;
 questions.reloadStore();
 
-app.get('/questions/:numquest', (req, res) => {
+app.get('/:numquest/questions', (req, res) => {
 	const gameQuests = questions.store.splice(0, req.params.numquest);
 	res.send(gameQuests);
 	questions.reloadStore();
